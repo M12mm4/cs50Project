@@ -27,9 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-CSRF_TRUSTED_ORIGINS = [
-    'https://8000-m12mm4-cs50project-jeyp7k9bo5x.ws-eu44.gitpod.io'
-]
+CSRF_TRUSTED_ORIGINS = ['https://8000-m12mm4-cs50project-jeyp7k9bo5x.ws-eu44.gitpod.io']
 # Application definition
 
 INSTALLED_APPS = [
@@ -131,3 +129,5 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = 'main.User'
