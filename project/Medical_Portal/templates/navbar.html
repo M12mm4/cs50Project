@@ -19,7 +19,14 @@
       </a>
   
       <!-- Left links -->
-  
+      {% if request.user.is_authenticated %}
+        <div class="d-flex align-items-center">
+          <a href="{% url 'logout' %}"><button type="button" class="btn btn-link px-3 me-2">
+            Logout
+          </button></a>
+      
+      </div>
+      {% else %}
         <div class="d-flex align-items-center">
           <a href="{% url 'login' %}"><button type="button" class="btn btn-link px-3 me-2">
             Login
@@ -28,6 +35,7 @@
             Sign up 
           </button>
         </div>
+      {% endif %}
       </div>
       <!-- Collapsible wrapper -->
     </div>

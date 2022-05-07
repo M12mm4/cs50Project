@@ -30,7 +30,7 @@ ALLOWED_HOSTS = []
 
 CSRF_TRUSTED_ORIGINS = ['https://8000-m12mm4-cs50project-jeyp7k9bo5x.ws-eu44.gitpod.io']
 # Application definition
-
+CRISPY_TEMPLATE_PACK="bootstrap4"
 INSTALLED_APPS = [
     'main.apps.MainConfig',
     'django.contrib.admin',
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'crispy_forms',
     'django.contrib.staticfiles',
 ]
 

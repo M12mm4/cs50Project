@@ -10,3 +10,6 @@ class Medication(models.Model):
     times = models.PositiveSmallIntegerField()
     notes = models.CharField(max_length=350)
 
+    def __str__(self):
+        return f"{self.name} for {self.patient}"
+
