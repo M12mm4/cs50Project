@@ -2,12 +2,35 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
-  <nav class="navbar navbar-light" style="background-color: #cae8ff;">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">
-        <img src="{% static 'images/logo.jpeg' %}" alt="" width="46" height="46" class="d-inline-block align-text-top">
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #CAE8FF;">
+    <!-- Container wrapper -->
+    <div class="container">
+      <!-- Navbar brand -->
+      <a class="navbar-brand me-2" href="{% url 'home' %}">
+        <img
+          src="{% static 'images/logo.jpeg' %}"
+          height="40"
+          width="40"
+          alt="Logo"
+          loading="lazy"
+          style="margin-top: -1px;"
+        />
         Healthy Me
       </a>
+  
+      <!-- Left links -->
+  
+        <div class="d-flex align-items-center">
+          <a href="{% url 'login' %}"><button type="button" class="btn btn-link px-3 me-2">
+            Login
+          </button></a>
+          <button type="button" class="btn btn-primary me-3">
+            Sign up 
+          </button>
+        </div>
+      </div>
+      <!-- Collapsible wrapper -->
     </div>
+    <!-- Container wrapper -->
   </nav>
 </html>

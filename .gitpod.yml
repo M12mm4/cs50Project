@@ -2,4 +2,5 @@ tasks:
   - init: |
       echo 'TODO: build project'
     command: |
-      echo 'TODO: start app'
+      source project/venv/bin/activate
+      cd project/Medical_Portal
