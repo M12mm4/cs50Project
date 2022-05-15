@@ -1,0 +1,20 @@
+{% extends "main.html" %}
+{% block title %} Login {% endblock %} 
+{% block body %} 
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="medicine" class="form-label">Medicine Name</label>
+            <input type="text" class="form-control" id="medicine" name="name" value="{{ med.name }}">
+        </div>
+        <div class="mb-3">
+            <label for="times" class="form-label">Number of times per day</label>
+            <input type="number" name="times" class="form-control" id="times" value="{{ med.times }}">
+        </div>
+        <div class="mb-3">
+            <label for="notes" class="form-label">Notes</label>
+            <input type="text" name="notes" id="Notes" value="{{ med.notes }}">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit🚀</button>
+    </form>
+{% endblock %}

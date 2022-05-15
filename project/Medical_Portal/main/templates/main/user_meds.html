@@ -2,6 +2,9 @@
 {% block title %} Home {% endblock %} 
 {% block body %} 
     {% for med in meds %}
-        <h1>{{ med.name }}</h1>
+        <h1>{{ med.name }} for {{ med.patient }}</h1>
+        <a href="{% url 'edit_med' med.id %}">Edit</a>
+        <a href="{% url 'delete_med' med.id %}">Delete</a>
+
     {% endfor %}
 {% endblock %}

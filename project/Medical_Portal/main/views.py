@@ -3,15 +3,27 @@ from .models import Medication, User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from .forms import UserRegister
+from django.contrib.auth.decorators import login_required
 # Create your views here.
+
+"""################ Home and meds page ################"""
+
+
+
 def home(request):
     return render(request, "main/index.html")
 
+@login_required(login_url='login')
 def meds(request):
-    meds = Medication.objects.all()
+    meds = Medication.objects.filter(patient=request.user)
     return render(request, "main/user_meds.html", {
         "meds": meds,
     })
+
+
+"""################ Authenication ################"""
+
+
 
 def login_page(request):
     if request.method == "POST":
@@ -45,17 +57,53 @@ def register_user(request):
 
     return render(request, "main/register.html", {"form":form})
 
+
+"""################ Medicatio CRUD ################"""
+
+
+
+@login_required(login_url='login')
 def add_med(request):
     if request.method == "POST":
         name = request.POST.get("medicine")
         times = request.POST.get("times")
         notes = request.POST.get("notes")
-
-        if not name or not times or notes :
-            messages.error(request, "You Have to Fill Every Field")
+        
+        print(f"\n\n##### {name} {times} {notes} #######")
+        current_user = request.user
         Medication.objects.create(
-            patient__id = request.user.id,
+            patient = current_user,
             name = name,
             times = times,
             notes = notes,
         )
+    return render(request, "main/add_med.html")
+
+@login_required(login_url='login')
+def edit_medication(request, pk):
+    current_user = request.user
+    med = Medication.objects.get(
+        id=pk,
+        patient=current_user
+        )
+
+    if request.method == "POST":
+        med.name = request.POST.get("name")
+        med.times = request.POST.get("times")
+        med.notes = request.POST.get("notes")
+        med.save()
+        return redirect("meds")
+    return render(request,"main/edit_med.html", {
+        "med": med,
+    })
+
+@login_required(login_url='login')
+def delete_med(request, pk):
+    med = Medication.objects.get(id=pk)
+    if request.method == "POST":
+        med.delete()
+        return redirect("meds")
+    return render(request, "main/delete.html", {
+        "med": med,
+    })
+
