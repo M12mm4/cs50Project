@@ -5,15 +5,15 @@
         {% csrf_token %}
         <div class="mb-3">
             <label for="medicine" class="form-label">Medicine Name</label>
-            <input type="text" class="form-control" id="medicine" name="medicine">
+            <input type="text" class="form-control" id="medicine" name="medicine" required>
         </div>
         <div class="mb-3">
             <label for="times" class="form-label">Number of times per day</label>
-            <input type="number" name="times" class="form-control" id="times">
+            <input type="number" name="times" class="form-control" id="times" required>
         </div>
         <div class="mb-3">
             <label for="notes" class="form-label">Notes</label>
-            <input type="text" name="notes" id="Notes">
+            <input type="text" name="notes" id="Notes" required>
         </div>
         <button type="submit" class="btn btn-primary">Submit🚀</button>
     </form>

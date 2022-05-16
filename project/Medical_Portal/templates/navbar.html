@@ -8,7 +8,7 @@
       <!-- Navbar brand -->
       <a class="navbar-brand me-2" href="{% url 'home' %}">
         <img
-          src="{% static 'images/logo.jpeg' %}"
+          src="{% static 'images/logo.svg' %}"
           height="40"
           width="40"
           alt="Logo"
@@ -34,9 +34,9 @@
           <a href="{% url 'login' %}"><button type="button" class="btn btn-link px-3 me-2">
             Login
           </button></a>
-          <button type="button" class="btn btn-primary me-3">
+          <a href="{% url 'register' %}"><button type="button" class="btn btn-primary me-3">
             Sign up 
-          </button>
+          </button></a>
         </div>
       {% endif %}
       </div>

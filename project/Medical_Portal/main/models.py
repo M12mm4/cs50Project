@@ -13,3 +13,19 @@ class Medication(models.Model):
     def __str__(self):
         return f"{self.name} for {self.patient}"
 
+
+"""
+############## Posts Model ################
+- id
+- Symptoms
+- Medications
+- Diagnoses
+- Notes/description
+"""
+
+class Posts(models.Model):
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    symptoms = models.CharField(max_length=300)
+    medications = models.CharField(max_length=300)
+    diagnosis = models.CharField(max_length=150)
+    Notes = models.TextField(max_length=300)

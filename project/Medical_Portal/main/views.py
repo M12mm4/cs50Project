@@ -52,9 +52,8 @@ def register_user(request):
 	    if form.is_valid():
 	        form.save()
 	        return redirect("home")
-    else:
-	    form = UserRegister()
 
+    form = UserRegister()
     return render(request, "main/register.html", {"form":form})
 
 
@@ -68,6 +67,9 @@ def add_med(request):
         name = request.POST.get("medicine")
         times = request.POST.get("times")
         notes = request.POST.get("notes")
+
+        if not name or not times or not notes:
+            return messages.warning(request, "You Should fill every field", )
         
         print(f"\n\n##### {name} {times} {notes} #######")
         current_user = request.user
@@ -77,6 +79,8 @@ def add_med(request):
             times = times,
             notes = notes,
         )
+
+        return redirect("meds")
     return render(request, "main/add_med.html")
 
 @login_required(login_url='login')
