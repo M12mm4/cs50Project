@@ -29,3 +29,9 @@ class Posts(models.Model):
     medications = models.CharField(max_length=300)
     diagnosis = models.CharField(max_length=150)
     Notes = models.TextField(max_length=300)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ['-created_at', '-updated_at']
+        

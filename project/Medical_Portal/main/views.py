@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Medication, User
+from .models import Medication, User, Posts
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from .forms import UserRegister
@@ -47,14 +47,19 @@ def logoutUser(request):
     return redirect("home")
 
 def register_user(request):
-    if request.method == "POST":
-	    form = UserRegister(request.POST)
-	    if form.is_valid():
-	        form.save()
-	        return redirect("home")
-
     form = UserRegister()
-    return render(request, "main/register.html", {"form":form})
+
+    if request.method == 'POST':
+        form = UserRegister(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.save()
+            login(request, user)
+            return redirect('home')
+        else:
+            messages.error(request, 'An error occurred during registration')
+
+    return render(request, 'main/register.html', {'form': form})
 
 
 """################ Medicatio CRUD ################"""
@@ -71,7 +76,6 @@ def add_med(request):
         if not name or not times or not notes:
             return messages.warning(request, "You Should fill every field", )
         
-        print(f"\n\n##### {name} {times} {notes} #######")
         current_user = request.user
         Medication.objects.create(
             patient = current_user,
@@ -111,3 +115,38 @@ def delete_med(request, pk):
         "med": med,
     })
 
+"""################### Posts Page ###################"""
+
+@login_required(login_url='login')
+def posts(request):
+    posts = Posts.objects.all()
+
+    return render(request, "main/posts.html", {
+        "posts": posts,
+    })
+
+
+
+@login_required(login_url='login')
+def add_post(request):
+    current_user = request.user
+
+    if request.method == "POST":
+        diagnosis = request.POST.get("diagnosis")
+        symptoms = request.POST.get("symptoms")
+        notes = request.POST.get("notes")
+        medications = request.POST.get("medications")
+
+        if not notes or not symptoms or not diagnosis:
+            messages.warning(request, "You should fill every field")
+
+        Posts.objects.create(
+            author = current_user,
+            diagnosis = diagnosis,
+            symptoms = symptoms,
+            Notes = notes, 
+            medications = medications
+        ) 
+
+        return redirect("posts")
+    return render(request, "main/add_post.html")

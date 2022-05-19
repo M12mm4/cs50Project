@@ -1,0 +1,24 @@
+{% extends "main.html" %}
+{% block title %} Login {% endblock %} 
+{% block body %} 
+    <form action="{% url 'add_post' %}" method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="diagnosis" class="form-label">Diagnosis</label>
+            <input type="text" class="form-control" id="diagnosis" name="diagnosis" required>
+        </div>
+        <div class="mb-3">
+            <label for="symptoms" class="form-label">Symptoms</label>
+            <input type="text" name="symptoms" class="form-control" id="symptoms" required>
+        </div>
+        <div class="mb-3">
+            <label for="medications" class="form-label">Medications</label>
+            <input type="text" name="medications" class="form-control" id="medications" required>
+        </div>
+        <div class="mb-3">
+            <label for="notes" class="form-label">Notes</label>
+            <textarea class="form-control" id="Notes" rows="3" name="notes"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Add🚀</button>
+    </form>
+{% endblock %}

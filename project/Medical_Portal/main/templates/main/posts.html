@@ -1,0 +1,11 @@
+{% extends "main.html" %}
+{% block title %} Posts {% endblock %} 
+{% block body %} 
+    <header>
+       <a href="{% url 'add_post'%}"> Create Post</a>
+    </header>
+
+    {% for post in posts %}
+        <h1>{{ post.diagnosis }} By {{ post.author }}</h1>
+    {% endfor %}
+{% endblock %}

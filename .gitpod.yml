@@ -3,4 +3,3 @@ tasks:
       echo 'TODO: build project'
     command: |
       source project/venv/bin/activate
-      cd project/Medical_Portal

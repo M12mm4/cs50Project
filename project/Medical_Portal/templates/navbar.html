@@ -20,17 +20,21 @@
   
       <!-- Left links -->
       {% if request.user.is_authenticated %}
-        <div class="d-flex align-items-center">
+        <div class="d-flex align-items-right">
           <a href="{% url 'logout' %}">Logout </a>
         </div>
-        <div class="d-flex align-items-center">
+        <div class="d-flex align-items-right">
           <a href="{% url 'meds' %}">Meds</a>
         </div>
-        <div class="d-flex align-items-center">
+        <div class="d-flex align-items-right">
           <a href="{% url 'add_meds' %}">Add Medication</a>
         </div>
+        <div class="d-flex align-items-right">
+          <a href="{% url 'posts' %}">Posts </a>
+        </div>
+
       {% else %}
-        <div class="d-flex align-items-center">
+        <div class="d-flex align-items-right">
           <a href="{% url 'login' %}"><button type="button" class="btn btn-link px-3 me-2">
             Login
           </button></a>
