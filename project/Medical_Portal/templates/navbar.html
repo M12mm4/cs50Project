@@ -5,23 +5,21 @@
   <!-- Container wrapper -->
 <!-- Container wrapper -->
 <header>
-  <div class="px-3 py-2 bg-dark text-white">
+  <div class="px-3 py-2 text-dark" style="background-color: #cae8ff;">
     <div class="container">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
         <a href="{% url 'home' %}" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
-          <img src="{% static 'images/Logo.svg' %}" width="40" height="40">
+          <img src="{% static 'images/logo.svg' %}" width="40" height="40">
         </a>
 
         <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
           <li>
-            <a href="#" class="nav-link text-white">
-              <span class="bi bi-house-heart d-block mx-auto mb-1" style="height: 35; width: 35;"></span>
+            <a href="#" class="nav-link text-dark">
               Me
             </a>
           </li>
           <li>
-            <a href="#" class="nav-link text-white">
-              <span class="bi bi-heart-pulse-fill d-block mx-auto mb-1"></span>
+            <a href="#" class="nav-link text-dark">
               Community
             </a>
           </li>
@@ -36,7 +34,9 @@
       </form>
       {% if request.user.is_authenticated %}
       <div class="text-end">
-        <button type="button" class="btn btn-light text-dark me-2"><a href="{% url 'logout' %}">logout</a></button>
+        <a href="{% url 'logout' %}" class="btn btn-outline-danger">logout</a>
+        <a href="{% url 'add_meds' %}" class="btn btn-primary" role="button">Add Medication</a>
+        <a href="{% url 'meds' %}" class="btn btn-primary" role="button">All Medications</a>
       </div>
       {% else %}
       <div class="text-end">
