@@ -150,3 +150,4 @@ def add_post(request):
 
         return redirect("posts")
     return render(request, "main/add_post.html")
+
