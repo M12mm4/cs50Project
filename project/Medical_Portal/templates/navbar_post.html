@@ -29,14 +29,14 @@
   </div>
   <div class="px-3 py-2 border-bottom mb-3">
     <div class="container d-flex flex-wrap justify-content-center">
-      <form class="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-auto" role="search">
-        <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+      <form class="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-auto" role="search" action="{% url 'posts' %}" method="get">
+        <input name="q" type="search" class="form-control" placeholder="Search in posts" aria-label="Search">
       </form>
       {% if request.user.is_authenticated %}
       <div class="text-end">
         <a href="{% url 'logout' %}" class="btn btn-outline-danger">logout</a>
-        <a href="{% url 'add_meds' %}" class="btn btn-primary" role="button">Add Medication</a>
-        <a href="{% url 'meds' %}" class="btn btn-primary" role="button">All Medications</a>
+        <a href="{% url 'add_post' %}" class="btn btn-primary" role="button">Add Post</a>
+        <a href="{% url 'my_posts' %}" class="btn btn-primary" role="button">My Posts</a>
       </div>
       {% else %}
       <div class="text-end">

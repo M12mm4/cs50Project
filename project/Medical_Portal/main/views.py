@@ -4,6 +4,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from .forms import UserRegister
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 # Create your views here.
 
 """################ Home and meds page ################"""
@@ -117,9 +118,20 @@ def delete_med(request, pk):
 
 """################### Posts Page ###################"""
 
-@login_required(login_url='login')
+
 def posts(request):
-    posts = Posts.objects.all()
+    q = request.GET.get('q')
+
+    if q is None:
+        q = ""
+
+
+    posts = Posts.objects.filter(
+        Q(symptoms__contains = q) |
+        Q(diagnosis__contains = q) |
+        Q(Notes__contains = q) |
+        Q(medications = q) 
+    )
 
     return render(request, "main/posts.html", {
         "posts": posts,
@@ -151,3 +163,12 @@ def add_post(request):
         return redirect("posts")
     return render(request, "main/add_post.html")
 
+
+def my_posts(request):
+    user = request.user
+
+    posts = Posts.objects.filter(author = user)
+
+    return render(request, "main/my_posts.html", {
+        "posts": posts
+    })

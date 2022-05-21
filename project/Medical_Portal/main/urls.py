@@ -13,7 +13,8 @@ urlpatterns = [
 
     ############### Posts Urls ###########################
     path('posts/', views.posts, name='posts'), 
-    path('posts/AddPost', views.add_post, name='add_post')
+    path('posts/AddPost', views.add_post, name='add_post'),
+    path('posts/MyPosts', views.my_posts, name='my_posts')
 
 
 ]
