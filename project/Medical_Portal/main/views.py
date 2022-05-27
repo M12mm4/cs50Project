@@ -112,9 +112,7 @@ def delete_med(request, pk):
     if request.method == "POST":
         med.delete()
         return redirect("meds")
-    return render(request, "main/delete.html", {
-        "med": med,
-    })
+    return render(request, "main/delete.html")
 
 """################### Posts Page ###################"""
 
@@ -163,7 +161,7 @@ def add_post(request):
         return redirect("posts")
     return render(request, "main/add_post.html")
 
-
+@login_required(login_url='login')
 def my_posts(request):
     user = request.user
 
@@ -172,3 +170,13 @@ def my_posts(request):
     return render(request, "main/my_posts.html", {
         "posts": posts
     })
+
+
+@login_required(login_url='login')
+def delete_post(request, pk):
+    post = Posts.objects.get(author = request.user, id = pk)
+    if request.method == "POST":
+        post.delete()
+        return redirect("my_posts")
+    return render(request, "main/delete.html")
+

@@ -28,7 +28,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-CSRF_TRUSTED_ORIGINS = ['https://8000-m12mm4-cs50project-t8sj1o3abeq.ws-eu45.gitpod.io']
+CSRF_TRUSTED_ORIGINS = ['https://8000-m12mm4-cs50project-t8sj1o3abeq.ws-eu46.gitpod.io']
 # Application definition
 CRISPY_TEMPLATE_PACK="bootstrap4"
 INSTALLED_APPS = [

@@ -1,5 +1,5 @@
 {% extends "main_post.html" %}
-{% block title %} Login {% endblock %} 
+{% block title %} Add Post {% endblock %} 
 {% block body %} 
     <form action="{% url 'add_post' %}" method="post">
         {% csrf_token %}
@@ -19,6 +19,8 @@
             <label for="notes" class="form-label">Notes</label>
             <textarea class="form-control" id="Notes" rows="3" name="notes"></textarea>
         </div>
+
+        <p style="color: red;">Note: Posts Is not editable</p>
         <button type="submit" class="btn btn-primary">Add🚀</button>
     </form>
 {% endblock %}

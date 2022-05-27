@@ -1,7 +1,22 @@
 {% extends "main_post.html" %}
-{% block title %} Posts {% endblock %} 
-{% block body %} 
-    {% for post in posts %}
-        <h1>{{ post.diagnosis }} By {{ post.author }}</h1>
-    {% endfor %}
+{% block title %} Posts {% endblock %}
+{% block body %}
+{% for post in posts %}
+<div class="posts_center">
+    <div class="card text-center" style="width: 18rem;">
+        <div class="card-header">
+            {{ post.author }}
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">{{ post.diagnosis }}</h5>
+            <p class="card-text">{{ post.symptoms }}</p>
+            <p class="card-text">{{ post.Notes }}</p>
+            <h6>{{ post.medications }}</h6>
+        </div>
+        <div class="card-footer text-muted">
+            {{ post.created_at }}
+        </div>
+    </div>
+</div>
+{% endfor %}
 {% endblock %}

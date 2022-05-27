@@ -1,11 +1,11 @@
 {% extends "main.html" %}
 {% load static %}
-{% block title %} Home {% endblock %} 
+{% block title %} Delete {% endblock %} 
 {% block body %} 
     <form action="" method="post">
         {% csrf_token %}
-        <h1>are you sure you want to delete {{ med.name }} from your medications list?</h1>
+        <h1>are you sure you want to delete the selected object from</h1>
         <button class="btn btn-danger" type="submit">Delete</button>
-        <a href="{% url 'meds' %}">Go Back</a>
+        <a href="{{request.META.HTTP_REFERER}}">Go Back</a>
     </form>
 {% endblock %}

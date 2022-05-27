@@ -1,6 +1,6 @@
 {% extends "main.html" %}
 {% load crispy_forms_tags %}
-{% block title %} Register{% endblock %} 
+{% block title %} Register {% endblock %} 
 {% block body %} 
     <form action="{% url 'register' %}" method="post">
         {% csrf_token %}

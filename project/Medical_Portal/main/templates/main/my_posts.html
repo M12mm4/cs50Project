@@ -1,8 +1,21 @@
 {% extends "main_post.html" %}
-{% block title %} Posts {% endblock %} 
+{% block title %} My Posts {% endblock %} 
 {% block body %} 
  
     {% for post in posts %}
-        <h1>{{ post.diagnosis }} By {{ post.author }}</h1>
+    <div class="posts_center">
+        <div class="card text-center" style="width: 18rem;">
+            <div class="card-header">
+                {{ post.created_at }}
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">{{ post.diagnosis }}</h5>
+                <p class="card-text">{{ post.symptoms }}</p>
+                <p class="card-text">{{ post.Notes }}</p>
+                <h6>{{ post.medications }}</h6>
+                <a href="{% url 'delete_post' post.id %}" class="btn btn-danger">Delete</a>
+            </div>
+        </div>
+    </div>
     {% endfor %}
 {% endblock %}
